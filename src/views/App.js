@@ -1,20 +1,20 @@
 import logo from "./logo.svg";
 import "./App.scss";
+import MyComponents from "./Example/MyComponents";
+
+/**
+ *  2 components: class components / function components (function, arrow function)
+ *  const App = () => {} (day la arrow function)
+ *  JSX: code html trong js thi do chinh la JSX
+ */
 
 function App() {
   return (
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
-        <p>Hello word React.js (Simon Dev)</p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        <p>Hello word React.js (Alan Dev)</p>
+        <MyComponents />
       </header>
     </div>
   );
