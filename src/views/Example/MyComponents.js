@@ -1,53 +1,31 @@
 import React from "react";
 import ChildComponent from "./ChildComponent";
+import AddComponent from "./AddComponent";
 
 class MyComponents extends React.Component {
   state = {
-    firstName: "",
-    lastName: "",
+    arrJobs: [
+      { id: "abcJob1", title: "Developers", salary: "800" },
+      { id: "abcJob2", title: "Tester", salary: "400" },
+      { id: "abcJob3", title: "Project Managers", salary: "1500" },
+    ],
   };
 
-  handleChangFirstName = (event) => {
-    this.setState({
-      firstName: event.target.value,
-    });
-  };
-  handleChangLastName = (event) => {
-    this.setState({
-      lastName: event.target.value,
-    });
-  };
-  handleSubmit = (event) => {
-    event.preventDefault();
-    console.log(">> check data input: ", this.state);
+  addNewJob = (job) => {
+    console.log("check job from parent: ", job);
+    // this.setState({
+    //   arrJobs: this.arrJobs.push(job),
+    // });
   };
 
   render() {
     console.log(">>>> Call Render: ", this.state);
     return (
-      <div>
-        <form>
-          <label htmlFor="fname">First name:</label>
-          <br />
-          <input
-            type="text"
-            value={this.state.firstName}
-            onChange={(event) => this.handleChangFirstName(event)}
-          />
-          <br />
-          <label htmlFor="lname">Last name:</label>
-          <br />
-          <input
-            type="text"
-            value={this.state.lastName}
-            onChange={(event) => this.handleChangLastName(event)}
-          />
-          <br />
-          <br />
-          <input type="Submit" onClick={(event) => this.handleSubmit(event)} />
-        </form>
-        <ChildComponent name={"Alan"} age={"23"} />
-      </div>
+      <>
+        <AddComponent addNewJob={this.addNewJob} />
+
+        <ChildComponent arrJobs={this.state.arrJobs} />
+      </>
     );
   }
 }

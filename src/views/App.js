@@ -13,7 +13,7 @@ function App() {
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
-        <p>Hello word React.js (Alan Dev)</p>
+        <p>Hello word React.js (Alex Dev)</p>
         <MyComponents />
       </header>
     </div>

@@ -2,41 +2,65 @@ import React from "react";
 
 class ChildComponent extends React.Component {
   state = {
-    firstName: "",
-    lastName: "",
+    showJobs: false,
   };
 
-  handleChangFirstName = (event) => {
+  // xử lý sự kiện khi bấm vào nút show sẽ hiện dữ liệu và ngược lại nút Hide ẩn đi
+  handleShowHide = () => {
     this.setState({
-      firstName: event.target.value,
+      showJobs: !this.state.showJobs,
     });
   };
-  handleChangLastName = (event) => {
-    this.setState({
-      lastName: event.target.value,
-    });
-  };
-  handleSubmit = (event) => {
-    event.preventDefault();
-    console.log(">> check data input: ", this.state);
-  };
-
   render() {
-    console.log(">>>> Check props: ", this.props);
-    // let name = this.props.name;
-    // let age = this.props.age;
+    let { arrJobs } = this.props;
+    let { showJobs } = this.state;
+    let check = showJobs === true ? "showJobs = true" : "showJobs = false";
+    console.log(">>> check conditional: ", check);
 
-    // key: value
-
-    let { name, age } = this.props; // this.props la 1 object
+    // điều kiện nếu showJobs = false thì sẽ show ra dữ liệu và ngược lại nếu showJobs = true sẽ xóa dữ liệu
     return (
-      <div>
-        <div>
-          Child Component: {name} - {age}
-        </div>
-      </div>
+      <>
+        {showJobs === false ? (
+          <div>
+            <button onClick={() => this.handleShowHide()}>Show</button>
+          </div>
+        ) : (
+          <>
+            <div className="job-lists">
+              {arrJobs.map((item, index) => {
+                return (
+                  <div key={item.id}>
+                    {item.title} - {item.salary}
+                  </div>
+                );
+              })}
+            </div>
+            <div>
+              <button onClick={() => this.handleShowHide()}>Hide</button>
+            </div>
+          </>
+        )}
+      </>
     );
   }
 }
 
+// const ChildComponent = (props) => {
+//   let { arrJobs } = props; // this.props la 1 object
+//   return (
+//     <div>
+//       <div className="job-lists">
+//         {arrJobs.map((item, index) => {
+//           if (item.salary >= 500) {
+//             return (
+//               <div key={item.id}>
+//                 {item.title} - {item.salary} $
+//               </div>
+//             );
+//           }
+//         })}
+//       </div>
+//     </div>
+//   );
+// };
 export default ChildComponent;
