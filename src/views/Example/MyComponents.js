@@ -11,11 +11,23 @@ class MyComponents extends React.Component {
     ],
   };
 
+  // add dữ liệu từ input lên màn hình
   addNewJob = (job) => {
     console.log("check job from parent: ", job);
-    // this.setState({
-    //   arrJobs: this.arrJobs.push(job),
-    // });
+    // let currentJobs = this.state.arrJobs;
+    // currentJobs.push(job);
+    this.setState({
+      arrJobs: [...this.state.arrJobs, job], // dấu ... là toán tử copy, copy các phần tử của array và tạo các phần tử khác
+      // arrJobs: currentJobs,
+    });
+  };
+
+  deleleAJob = (job) => {
+    let currentJobs = this.state.arrJobs;
+    currentJobs = currentJobs.filter((item) => item.id !== job.id);
+    this.setState({
+      arrJobs: currentJobs,
+    });
   };
 
   render() {
@@ -24,7 +36,10 @@ class MyComponents extends React.Component {
       <>
         <AddComponent addNewJob={this.addNewJob} />
 
-        <ChildComponent arrJobs={this.state.arrJobs} />
+        <ChildComponent
+          arrJobs={this.state.arrJobs}
+          deleleAJob={this.deleleAJob}
+        />
       </>
     );
   }
