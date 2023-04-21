@@ -4,6 +4,15 @@ import MyComponents from "./Example/MyComponents";
 import ListTodo from "./Todos/ListTodo";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css"; // thư viện hiển thị thông báo
+import Nav from "./Nav/nav";
+import Home from "./Example/Home";
+import {
+  BrowserRouter,
+  Switch,
+  Route,
+  Link,
+  useRouteMatch,
+} from "react-router-dom";
 
 /**
  *  2 components: class components / function components (function, arrow function)
@@ -14,28 +23,39 @@ import "react-toastify/dist/ReactToastify.css"; // thư viện hiển thị thô
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>Simple TODO Apps React.js (Alex Nguyễn Dev)</p>
-        {/* <MyComponents /> */}
-        <ListTodo />
-      </header>
+    <BrowserRouter>
+      <div className="App">
+        <header className="App-header">
+          <Nav />
+          <img src={logo} className="App-logo" alt="logo" />
 
-      // chức năng hiển thị thông báo
-      <ToastContainer
-        position="top-right"
-        autoClose={5000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-        theme="light"
-      />
-    </div>
+          <Switch>
+            <Route exact path="/">
+              <Home />
+            </Route>
+            <Route path="/todo">
+              <ListTodo />
+            </Route>
+          </Switch>
+          <Route path="/about">
+            <MyComponents />
+          </Route>
+        </header>
+
+        <ToastContainer // chức năng hiển thị thông báo
+          position="top-right"
+          autoClose={5000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme="light"
+        />
+      </div>
+    </BrowserRouter>
   );
 }
 

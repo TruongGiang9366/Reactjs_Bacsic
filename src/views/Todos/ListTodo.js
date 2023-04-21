@@ -67,67 +67,70 @@ class ListTodo extends React.Component {
   };
   render() {
     let { listTodos, editTodo } = this.state;
-    let isEmptyObj = Object.keys(editTodo).length === 0; // điều kiện so sánh nếu Object bằng 0 thì íEmptyObj trả ra bằng true, ngược lại bằng false
+    let isEmptyObj = Object.keys(editTodo).length === 0; // điều kiện so sánh nếu Object bằng 0 thì isEmptyObj trả ra bằng true, ngược lại bằng false
     console.log(">>> check EmtyObj: ", isEmptyObj);
     // let lisTodos = this.state.listTodos;
 
     return (
-      <div className="list-todo-container">
-        <AddTodo addNewTodo={this.addNewTodo} />
-        <div className="list-todo-content">
-          {
-            // Hiển thị thông tin từ listTodos
-            listTodos &&
-              listTodos.length > 0 &&
-              listTodos.map((item, index) => {
-                return (
-                  <div className="todo-child" key={item.id}>
-                    {isEmptyObj === true ? ( // tạo điều kiện nếu bấm vào nút edit sẽ hiện ra nút input
-                      <span>
-                        {index + 1} - {item.title}
-                      </span>
-                    ) : (
-                      // nếu chưa bấm nút edit thì chạy hàm trên và ngược lại
-                      // check xem obj co rong hay khong
-                      // check xem id co giong hay khong
-                      <>
-                        {editTodo.id === item.id ? (
-                          <span>
-                            {index + 1} -{" "}
-                            <input
-                              value={editTodo.title}
-                              onChange={(event) =>
-                                this.handelOnchangeEditTodo(event)
-                              }
-                            />
-                          </span>
-                        ) : (
-                          <span>
-                            {index + 1} - {item.title}
-                          </span>
-                        )}
-                      </>
-                    )}
-                    <button
-                      className="edit"
-                      onClick={() => this.handelEditTodo(item)}
-                    >
-                      {isEmptyObj === false && editTodo.id === item.id
-                        ? "Save"
-                        : "Edit"}
-                    </button>
-                    <button
-                      className="del"
-                      onClick={() => this.handelDeleteTodo(item)}
-                    >
-                      Delete
-                    </button>
-                  </div>
-                );
-              })
-          }
+      <>
+        <p>Simple TODO Apps React.js (Alex Nguyễn Dev)</p>
+        <div className="list-todo-container">
+          <AddTodo addNewTodo={this.addNewTodo} />
+          <div className="list-todo-content">
+            {
+              // Hiển thị thông tin từ listTodos
+              listTodos &&
+                listTodos.length > 0 &&
+                listTodos.map((item, index) => {
+                  return (
+                    <div className="todo-child" key={item.id}>
+                      {isEmptyObj === true ? ( // tạo điều kiện nếu bấm vào nút edit sẽ hiện ra nút input
+                        <span>
+                          {index + 1} - {item.title}
+                        </span>
+                      ) : (
+                        // nếu chưa bấm nút edit thì chạy hàm trên và ngược lại
+                        // check xem obj co rong hay khong
+                        // check xem id co giong hay khong
+                        <>
+                          {editTodo.id === item.id ? (
+                            <span>
+                              {index + 1} -{" "}
+                              <input
+                                value={editTodo.title}
+                                onChange={(event) =>
+                                  this.handelOnchangeEditTodo(event)
+                                }
+                              />
+                            </span>
+                          ) : (
+                            <span>
+                              {index + 1} - {item.title}
+                            </span>
+                          )}
+                        </>
+                      )}
+                      <button
+                        className="edit"
+                        onClick={() => this.handelEditTodo(item)}
+                      >
+                        {isEmptyObj === false && editTodo.id === item.id
+                          ? "Save"
+                          : "Edit"}
+                      </button>
+                      <button
+                        className="del"
+                        onClick={() => this.handelDeleteTodo(item)}
+                      >
+                        Delete
+                      </button>
+                    </div>
+                  );
+                })
+            }
+          </div>
         </div>
-      </div>
+      </>
     );
   }
 }
