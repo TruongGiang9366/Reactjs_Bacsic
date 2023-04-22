@@ -2,6 +2,7 @@ import React from "react";
 import "./ListTodo.scss";
 import AddTodo from "./AddTodo";
 import { toast } from "react-toastify"; // thư viện hiển thị thông báo
+import Color from "../HOC/Color";
 
 class ListTodo extends React.Component {
   // add ds todo
