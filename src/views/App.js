@@ -6,6 +6,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css"; // thư viện hiển thị thông báo
 import Nav from "./Nav/nav";
 import Home from "./Example/Home";
+import ListUser from "./Users/ListUser";
 import {
   BrowserRouter,
   Switch,
@@ -38,6 +39,9 @@ function App() {
           </Switch>
           <Route path="/about">
             <MyComponents />
+          </Route>
+          <Route path="/user">
+            <ListUser />
           </Route>
         </header>
 
