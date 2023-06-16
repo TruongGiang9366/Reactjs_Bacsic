@@ -7,6 +7,7 @@ import "react-toastify/dist/ReactToastify.css"; // thư viện hiển thị thô
 import Nav from "./Nav/nav";
 import Home from "./Example/Home";
 import ListUser from "./Users/ListUser";
+import DetailUser from "./Users/DetailUser";
 import {
   BrowserRouter,
   Switch,
@@ -40,8 +41,11 @@ function App() {
           <Route path="/about">
             <MyComponents />
           </Route>
-          <Route path="/user">
+          <Route path="/user" exact>
             <ListUser />
+          </Route>
+          <Route path="/user/:id">
+            <DetailUser />
           </Route>
         </header>
 

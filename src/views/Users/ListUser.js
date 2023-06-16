@@ -1,6 +1,7 @@
 import React from "react";
 import axios from "axios";
 import "./ListUser.scss";
+import { withRouter } from "react-router-dom"; // sử dụng để chuyển trang
 
 class ListUser extends React.Component {
   state = {
@@ -13,6 +14,11 @@ class ListUser extends React.Component {
       listUser: res && res.data && res.data.data ? res.data.data : [],
     });
   }
+
+  handelViewDetailUser = (user) => {
+    // đẩy dữ liệu id đến trang app.js
+    this.props.history.push(`/user/${user.id}`);
+  };
   render() {
     let { listUser } = this.state;
     return (
@@ -23,7 +29,11 @@ class ListUser extends React.Component {
             listUser.length > 0 &&
             listUser.map((item, index) => {
               return (
-                <div className="child" key={item.id}>
+                <div
+                  className="child"
+                  key={item.id}
+                  onClick={() => this.handelViewDetailUser(item)}
+                >
                   {" "}
                   {index + 1} - {item.first_name} {item.last_name}
                 </div>
@@ -34,4 +44,4 @@ class ListUser extends React.Component {
     );
   }
 }
-export default ListUser;
+export default withRouter(ListUser);
