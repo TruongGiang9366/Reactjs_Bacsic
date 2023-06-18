@@ -21,6 +21,8 @@ import {
  *  const App = () => {} (day la arrow function)
  *  JSX: code html trong js thi do chinh la JSX
  *  thẻ span cho phép viết trên cùng 1 hàng còn thẻ div là tự động xuống hàng
+ *  switch chi dung de render 1 component duy nhat
+ *  khi cai dat react-router-dom thi no da cai dat cho chung ta react-router roi
  */
 
 function App() {
@@ -30,6 +32,7 @@ function App() {
         <header className="App-header">
           <Nav />
           <img src={logo} className="App-logo" alt="logo" />
+
           <Switch>
             <Route exact path="/">
               <Home />
